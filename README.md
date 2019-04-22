@@ -12,12 +12,12 @@ Microservicios creados con msf4j que conectan con la API de endomondo.<br><br>
 	- <b>/workouts:</b> Recibe el authToken y devuelve la lista de workouts del usuario.<br>
 		<br>GET:<br>
 		<pre>
-			URL?authToken=_____
+			URL?authToken=authToken
 		</pre>
 	- <b>/workout:</b> Recibe el authToken y el id del workout y devuelve el detalle del workout.<br>
 		<br>GET:<br>
 		<pre>
-			URL?authToken=______&workoutId=_____
+			URL?authToken=authToken&workoutId=workoutId
 		</pre>
 	- <b>/all-workouts:</b> Recibe email, password y deviceId y devuelve una lista con el detalle de todos los workouts del usuario<br>
 		<br>POST:<br>
