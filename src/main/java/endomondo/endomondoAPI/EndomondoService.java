@@ -32,7 +32,7 @@ public class EndomondoService {
 		Authentication a = new Authentication();
 		try {
 			/* Login con la api */
-			String resAuth  = a.authenticate(user.getEmail(), user.getPassword());
+			String resAuth  = a.authenticate(user.getEmail(), user.getPassword(), user.getDeviceId());
 			String [] aux = resAuth.split("\n");
 			if (aux.length > 1) {
 				jsonRes.put("status", aux[0]);
@@ -112,7 +112,7 @@ public class EndomondoService {
 		Authentication a = new Authentication();
 		try {
 			/* Login con la api */
-			String resAuth  = a.authenticate(user.getEmail(), user.getPassword());
+			String resAuth  = a.authenticate(user.getEmail(), user.getPassword(), "");
 			String [] aux = resAuth.split("\n");
 			if (aux.length > 1) {
 				Workouts ws = new Workouts();

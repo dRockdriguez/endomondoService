@@ -12,12 +12,15 @@ import org.apache.http.util.EntityUtils;
 
 public class Authentication {
 	
-	public String authenticate(String email, String password) throws ClientProtocolException, IOException {
+	public String authenticate(String email, String password, String deviceId) throws ClientProtocolException, IOException {
 		Common com = new Common();
 		String url = Common.api + com.getPaths().get("auth");
-		
+
+		if ("".equals(deviceId)) {
+			deviceId="nodeviceid";
+		}
 		HttpClient client = HttpClientBuilder.create().build();
-		HttpGet request = new HttpGet(url + "?email=" + email + "&password=" + password + "&action=pair&country=ES&deviceId=sdafasdfasdf");
+		HttpGet request = new HttpGet(url + "?email=" + email + "&password=" + password + "&action=pair&country=ES&deviceId=" + deviceId);
 
 		HttpResponse response = client.execute(request);
 		
