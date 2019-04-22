@@ -11,6 +11,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.http.client.ClientProtocolException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import endomondo.endomondoAPI.model.User;
@@ -95,6 +96,50 @@ public class EndomondoService {
 			jsonRes.put("status", "ERROR");
 			jsonRes.put("message", "authToken y workoutId son obligatorios");
 			
+		}
+		return jsonRes.toString();
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=utf-8")
+	@Path("/all-workouts")
+	public String allWorkouts(User user) {
+		JSONObject jsonRes = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		Authentication a = new Authentication();
+		try {
+			/* Login con la api */
+			String resAuth  = a.authenticate(user.getEmail(), user.getPassword());
+			String [] aux = resAuth.split("\n");
+			if (aux.length > 1) {
+				Workouts ws = new Workouts();
+				String res = ws.getWorkouts(aux[2].split("=")[1]);
+				jsonRes = new JSONObject(res);
+				JSONArray jsonArray = (JSONArray)jsonRes.get("data");
+				Workout w = new Workout();
+				for(int i = 0; i < jsonArray.length(); i ++) {
+					if(((JSONObject)jsonArray.get(i)).get("id") != null) {
+						JSONObject jsonWorkout = new JSONObject();
+						String workout = w.getWorkout(aux[2].split("=")[1], ((JSONObject)jsonArray.get(i)).get("id").toString());
+						jsonWorkout = new JSONObject(workout);
+						jsonArr.put(jsonWorkout);
+					}
+				}
+				jsonRes.put("workoutsNumber", jsonArr.length());
+				if (jsonArr.length() > 0) {
+					jsonRes.put("data", jsonArr);
+				} else {
+					jsonRes.put("data", "No hay workouts");
+				}
+			} else {
+				jsonRes.put("status", "ERROR");
+				jsonRes.put("message", resAuth);
+			}
+		} catch (ClientProtocolException e) {
+			jsonRes.put("status", "ERROR");
+		} catch (IOException e) {
+			jsonRes.put("status", "ERROR");
 		}
 		return jsonRes.toString();
 	}
