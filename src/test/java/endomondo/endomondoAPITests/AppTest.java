@@ -1,4 +1,4 @@
-package endomondo.endomondoPrueba;
+package endomondo.endomondoAPITests;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
