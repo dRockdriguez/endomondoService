@@ -1,6 +1,6 @@
 # Servicio API Endomondo
 Microservicios creados con msf4j que conectan con la API de endomondo.<br><br>
-	- <b>/login:</b> Recibe email, password y deviceId. Obtiene el authToken.<br>
+	- <b>/login:</b> Recibe email, password y deviceId (puede ir vacio). Obtiene el authToken.<br>
 		<br>POST:<br>
 		<pre>
 			{
@@ -19,7 +19,7 @@ Microservicios creados con msf4j que conectan con la API de endomondo.<br><br>
 		<pre>
 			URL?authToken=authToken&workoutId=workoutId
 		</pre>
-	- <b>/all-workouts:</b> Recibe email, password y deviceId y devuelve una lista con el detalle de todos los workouts del usuario.<br>
+	- <b>/all-workouts:</b> Recibe email, password y deviceId (puede ir vacio) y devuelve una lista con el detalle de todos los workouts del usuario.<br>
 		<br>POST:<br>
 		<pre>
 			{
