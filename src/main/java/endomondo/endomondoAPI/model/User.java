@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public User(String email, String password, String deviceId) {
 		super();
 		this.email = email;
