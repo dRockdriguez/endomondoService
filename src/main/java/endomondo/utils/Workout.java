@@ -16,9 +16,7 @@ public class Workout {
 	public String  getWorkout(String authToken, String workoutId) throws ClientProtocolException, IOException {
 		Common com = new Common();
 		String fields = "device,simple,basic,motivation,interval,hr_zones,weather,polyline_encoded_small,points,lcp_count,tagged_users,pictures,feed";
-		
-		String trackPoints = "${time};${point.inst};${point.latitude};${point.longitude};${point.distance.toFixed(2)};${point.speed};${point.altitude};${point.heartRate}";
-		
+				
 		HashMap<String, String> activity = (HashMap<String, String>) com.getPaths().get("activity");
 		String url = Common.api + activity.get("get");
 		

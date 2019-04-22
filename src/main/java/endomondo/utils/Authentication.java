@@ -19,7 +19,6 @@ public class Authentication {
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet(url + "?email=" + email + "&password=" + password + "&action=pair&country=ES&deviceId=sdafasdfasdf");
 
-		//https://api.mobile.endomondo.com/mobile/auth?email=david.rodriguez@grupoonetec.com&password=Owyeah123&action=pair&country=GB&deviceId=sdafasdfasdf
 		HttpResponse response = client.execute(request);
 		
 		HttpEntity entity = response.getEntity();
