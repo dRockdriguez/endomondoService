@@ -100,6 +100,8 @@ public class EndomondoService {
 		return jsonRes.toString();
 	}
 	
+	
+	/* Obtiene el detalle de todos los workouts */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json; charset=utf-8")
